@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TravelFlow</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>TravelFlow</h1>
+
+  <section id="trip-form">
+    <input id="destination" placeholder="Destination" />
+    <input id="startDate" type="date" />
+    <input id="endDate" type="date" />
+    <input id="budget" placeholder="Budget (USD)" />
+    <input id="currency" placeholder="Currency (EUR)" />
+    <button id="load">Load Trip Data</button>
+  </section>
+
+  <section id="weather"></section>
+  <section id="packing"></section>
+  <section id="budget"></section>
+
+  <a href="itinerary.html">Go to Itinerary</a>
+
+  <script src="api/weather.js"></script>
+  <script src="api/currency.js"></script>
+  <script src="api/geocode.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
