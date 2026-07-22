@@ -231,7 +231,7 @@ body {
 
 .tm-badge {
   background: #341f1a;
-  color: #f7f6fb;
+  color: #e9e6f3;
   padding: 6px 10px;
   border-radius: 0;
   font-size: 0.78rem;
@@ -374,7 +374,7 @@ a:hover {
   padding: 18px;
   border: 2px solid #e9e6f3;
   border-radius: 0;
-  background: #f7f6fb;
+  background: #e9e6f3;
 }
 
 .tm-journey-card h3 {
@@ -393,7 +393,7 @@ a:hover {
   padding: 16px;
   border: 2px solid #e9e6f3;
   border-radius: 0;
-  background: #f7f6fb;
+  background: #e9e6f3;
 }
 
 .tm-overview-grid {
@@ -407,7 +407,7 @@ a:hover {
   padding: 16px;
   border: 2px solid #e9e6f3;
   border-radius: 0;
-  background: #f7f6fb;
+  background: #e9e6f3;
 }
 
 .tm-highlights-grid {
