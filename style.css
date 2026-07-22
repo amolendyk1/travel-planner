@@ -1,10 +1,16 @@
 /* GLOBAL RESET */
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
   line-height: 1.35;
   color: #341f1a;
 }
@@ -193,7 +199,9 @@ body {
   background: #fffef9;
   color: #341f1a;
   text-decoration: none;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .tm-home-card:hover {
@@ -257,7 +265,9 @@ body {
   border-radius: 0;
   background: #e9e6f3;
   font-size: 0.95rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .tm-form-row input:focus,
@@ -277,7 +287,9 @@ body {
   font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
   grid-column: 1 / -1;
 }
 
@@ -338,7 +350,10 @@ a:hover {
   font-weight: 700;
   letter-spacing: 0.02em;
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.2s ease;
 }
 
 .tm-flow-chip:hover {
@@ -504,7 +519,9 @@ a:hover {
   border: 2px solid #e9e6f3;
   border-radius: 0;
   background: #fffef9;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .tm-event-card:hover {
@@ -756,7 +773,9 @@ a:hover {
   font-size: 0.9rem;
   font-weight: 700;
   text-decoration: none;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
   cursor: pointer;
 }
 
