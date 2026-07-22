@@ -1,1 +1,5 @@
+.vscode/*
+ai-chat/config.js 
 .env
+.DS_Store
+node_modules/
