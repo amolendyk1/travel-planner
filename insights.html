@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TravelFlow • Insights</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="tm-body">
+    <header class="tm-header">
+      <div class="tm-header-inner">
+        <h1 class="tm-logo">TravelFlow</h1>
+        <nav class="tm-nav" aria-label="Primary navigation">
+          <a class="tm-nav-link" href="index.html">Home</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="tm-main">
+      <!-- Destination input -->
+      <section class="tm-panel">
+        <div class="tm-form" style="grid-template-columns: 1fr auto">
+          <div class="tm-form-row">
+            <label for="destination">Destination</label>
+            <input id="destination" placeholder="Enter a destination..." />
+          </div>
+          <div class="tm-form-row" style="justify-content: flex-end">
+            <button id="refreshInsights" class="tm-button" style="grid-column: auto; margin-top: 22px">
+              Refresh
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Travel plan -->
+      <section class="tm-panel">
+        <div class="tm-panel-heading">
+          <div>
+            <h2>Your travel plan</h2>
+            <p class="status-message">
+              This section turns your trip basics into a clearer plan so every
+              part of the experience feels connected.
+            </p>
+          </div>
+        </div>
+
+        <div class="tm-insights-grid">
+          <section id="weather" class="tm-insight-card"></section>
+          <section id="packing" class="tm-insight-card"></section>
+          <section id="budget" class="tm-insight-card"></section>
+
+          <!-- ⭐ Transportation card lives here -->
+          <section id="transportation" class="tm-insight-card"></section>
+        </div>
+      </section>
+
+      <!-- Travel essentials -->
+      <section class="tm-panel">
+        <div class="tm-panel-heading">
+          <div>
+            <h2>Travel essentials</h2>
+            <p class="status-message">
+              Helpful details that make the trip easier once you have the
+              destination in place.
+            </p>
+          </div>
+        </div>
+        <div id="travelInfo" class="tm-info-grid"></div>
+      </section>
+
+      <!-- Restaurants -->
+      <section class="tm-panel">
+        <h2>Where to eat</h2>
+        <p class="status-message">
+          A quick list of places that fit naturally into your trip once the
+          destination is set.
+        </p>
+        <div id="restaurants" class="tm-events-grid"></div>
+      </section>
+
+      <!-- Map -->
+      <section class="tm-panel">
+        <h2>Your destination at a glance</h2>
+        <p class="status-message">
+          A simple map view that helps the trip feel grounded and easier to
+          picture.
+        </p>
+        <div id="homeMap" class="tm-map-preview"></div>
+      </section>
+    </main>
+
+    <div class="tm-page-actions">
+      <a class="tm-page-btn" href="planner.html">← Back</a>
+      <a class="tm-page-btn" href="planner.html" onclick="localStorage.clear()">+ New Trip</a>
+    </div>
+
+    <footer class="tm-footer">TravelFlow • Smart plans, smoother trips</footer>
+
+    <!-- ⭐ Scripts MUST be at the very bottom -->
+    <script src="api/weather.js"></script>
+    <script src="api/currency.js"></script>
+    <script src="api/geocode.js"></script>
+    <script src="app.js"></script>
+
+    <!-- ⭐ Transportation MUST load last -->
+    <script src="api/transport.js"></script>
+  </body>
+</html>

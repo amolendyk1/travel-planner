@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TravelFlow • Planner</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="tm-body">
+    <header class="tm-header">
+      <div class="tm-header-inner">
+        <h1 class="tm-logo">TravelFlow</h1>
+        <nav class="tm-nav" aria-label="Primary navigation">
+          <a class="tm-nav-link" href="index.html">Home</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="tm-main">
+      <section class="tm-panel tm-panel-hero">
+        <div class="tm-flow-steps" role="list" aria-label="Trip planning steps">
+          <button
+            type="button"
+            class="tm-flow-chip tm-flow-chip-active"
+            data-step="1"
+          >
+            1. Choose your trip
+          </button>
+          <button type="button" class="tm-flow-chip" data-step="2">
+            2. Shape the plan
+          </button>
+          <button type="button" class="tm-flow-chip" data-step="3">
+            3. Explore the destination
+          </button>
+        </div>
+
+        <div class="tm-panel-intro">
+          <div>
+            <h2>Plan Your Trip</h2>
+            <p class="status-message">
+              Follow the steps below to shape a plan that naturally leads into
+              your itinerary.
+            </p>
+          </div>
+          <span class="tm-badge">Travel-ready</span>
+        </div>
+
+        <div class="tm-step-panel" data-step-panel="1">
+          <div style="display: flex; align-items: center; margin-bottom: 14px">
+            <span class="tm-step-number">1</span>
+            <strong style="font-size: 1.05rem">Choose your trip</strong>
+          </div>
+          <div id="trip-form" class="tm-form">
+            <div class="tm-form-row">
+              <label for="destination">Destination</label>
+              <input
+                id="destination"
+                placeholder="Destination"
+                list="destSuggestions"
+              />
+              <datalist id="destSuggestions"></datalist>
+            </div>
+            <div class="tm-form-row">
+              <label for="startDate">Start date</label>
+              <input id="startDate" type="date" />
+            </div>
+            <div class="tm-form-row">
+              <label for="endDate">End date</label>
+              <input id="endDate" type="date" />
+            </div>
+            <div class="tm-form-row">
+              <label for="budget">Trip budget</label>
+              <input
+                id="budget"
+                type="number"
+                min="0"
+                step="50"
+                placeholder="Example: 1800"
+              />
+            </div>
+            <div class="tm-form-row">
+              <label for="currency">Spend in</label>
+              <select id="currency">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+                <option value="JPY">JPY</option>
+                <option value="CAD">CAD</option>
+                <option value="AUD">AUD</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="tm-step-panel" data-step-panel="2" hidden>
+          <div style="display: flex; align-items: center; margin-bottom: 14px">
+            <span class="tm-step-number">2</span>
+            <strong style="font-size: 1.05rem">Shape the plan</strong>
+          </div>
+          <div id="tripOverview" class="tm-overview-card"></div>
+          <div id="tripHighlights" class="tm-highlights-card"></div>
+          <div style="margin-top: 16px; text-align: center">
+            <a class="tm-nav-link tm-nav-link-inline" href="insights.html"
+              >View full insights →</a
+            >
+          </div>
+        </div>
+
+        <div class="tm-step-panel" data-step-panel="3" hidden>
+          <div style="display: flex; align-items: center; margin-bottom: 14px">
+            <span class="tm-step-number">3</span>
+            <strong style="font-size: 1.05rem">Explore the destination</strong>
+          </div>
+          <div class="tm-journey-card">
+            <h3>Build your itinerary</h3>
+            <p>
+              Once your trip basics are in place, you can carry them into a
+              day-by-day plan.
+            </p>
+            <a class="tm-nav-link tm-nav-link-inline" href="itinerary.html"
+              >Open itinerary builder</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="tm-page-actions">
+      <a class="tm-page-btn" href="index.html">← Back</a>
+      <a class="tm-page-btn" href="planner.html" onclick="localStorage.clear()"
+        >+ New Trip</a
+      >
+    </div>
+
+    <footer class="tm-footer">TravelFlow • Smart plans, smoother trips</footer>
+
+    <script src="api/weather.js"></script>
+    <script src="api/currency.js"></script>
+    <script src="api/geocode.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

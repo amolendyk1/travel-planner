@@ -1,16 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Itinerary</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <h1>Your Itinerary</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Itinerary</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="tm-body">
+    <header class="tm-header">
+      <div class="tm-header-inner">
+        <h1 class="tm-logo">Your Itinerary</h1>
+      </div>
+    </header>
 
-  <button id="addDay">Add Day</button>
-  <div id="itineraryList"></div>
+    <main class="tm-main">
+      <section class="tm-panel">
+        <h2>Build Your Timeline</h2>
+        <button id="addDay" class="tm-button">Add Day</button>
+        <div id="itineraryList" class="tm-events-grid"></div>
+      </section>
 
-  <script src="itinerary.js"></script>
-</body>
+      <section class="tm-panel">
+        <h2>Nearby Restaurants, Hotels & Transport</h2>
+        <p class="status-message">
+          Use this section to discover nearby dining, stays, transport tips, and
+          landmark ideas for your trip.
+        </p>
+        <div class="tm-map-toolbar">
+          <label for="daySelect">Add to day</label>
+          <select id="daySelect" class="tm-input-inline"></select>
+        </div>
+        <div class="tm-search-row">
+          <input
+            id="searchPlaces"
+            class="tm-input-inline"
+            type="text"
+            placeholder="Try café, hotel, taxi, museum, brunch..."
+          />
+        </div>
+        <div class="tm-filter-row">
+          <button class="tm-filter-pill active" data-filter="all" type="button">
+            All
+          </button>
+          <button class="tm-filter-pill" data-filter="landmark" type="button">
+            Landmarks
+          </button>
+          <button class="tm-filter-pill" data-filter="restaurant" type="button">
+            Restaurants
+          </button>
+          <button class="tm-filter-pill" data-filter="hotel" type="button">
+            Hotels
+          </button>
+        </div>
+        <div id="mapPreview" class="tm-map-preview"></div>
+        <div id="pinDetail" class="tm-pin-detail" hidden></div>
+        <div id="nearbyPlaces" class="tm-events-grid"></div>
+      </section>
+    </main>
+
+    <div class="tm-page-actions">
+      <a class="tm-page-btn" href="planner.html">← Back</a>
+      <a class="tm-page-btn" href="planner.html" onclick="localStorage.clear()"
+        >+ New Trip</a
+      >
+    </div>
+
+    <footer class="tm-footer">TravelFlow • Smart plans, smoother trips</footer>
+
+    <script src="itinerary.js"></script>
+  </body>
 </html>
