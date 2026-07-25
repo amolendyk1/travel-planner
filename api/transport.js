@@ -1,5 +1,5 @@
 // transport.js
-// Self-contained "Transportation" feature for the insights page.
+// Self-contained "Transportation" feature for the itinerary page.
 // Lets the user log flights, trains, rental cars, etc. with confirmation
 // details, and keeps them in localStorage under their own key so this
 // doesn't touch any other trip data the app already manages.
@@ -29,6 +29,14 @@
 
   function saveLegs(legs) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(legs));
+  }
+
+  function sortedLegs() {
+    return loadLegs().sort((a, b) => {
+      const da = new Date(`${a.date || "9999-12-31"}T${a.time || "00:00"}`);
+      const db = new Date(`${b.date || "9999-12-31"}T${b.time || "00:00"}`);
+      return da - db;
+    });
   }
 
   function modeIcon(mode) {
@@ -66,23 +74,32 @@
     return parts.join(" • ");
   }
 
-  function render() {
-    const legs = loadLegs().sort((a, b) => {
-      const da = new Date(`${a.date || "9999-12-31"}T${a.time || "00:00"}`);
-      const db = new Date(`${b.date || "9999-12-31"}T${b.time || "00:00"}`);
-      return da - db;
-    });
+  function escapeHtml(str) {
+    const div = document.createElement("div");
+    div.textContent = str || "";
+    return div.innerHTML;
+  }
 
+  function render() {
+    const legs = sortedLegs();
     const totalCost = legs.reduce((sum, l) => sum + (Number(l.cost) || 0), 0);
 
     container.innerHTML = `
-      <h2>Transportation</h2>
-      <p class="status-message">
-        Log flights, trains, or rentals so confirmation details live right
-        alongside the rest of your trip.
-      </p>
+      <div class="tf-transport-heading">
+        <div>
+          <h2>Transportation</h2>
+          <p class="status-message">
+            Log flights, trains, or rentals so confirmation details live right
+            alongside the rest of your trip.
+          </p>
+        </div>
+        <div class="tf-transport-total">
+          <span class="tm-label">Total cost</span>
+          <strong>${totalCost.toLocaleString()}</strong>
+        </div>
+      </div>
 
-      <div id="transportForm" class="tm-form" style="grid-template-columns: 1fr 1fr; margin-top: 12px;">
+      <div id="transportForm" class="tm-form tf-transport-form">
         <div class="tm-form-row">
           <label for="transportMode">Type</label>
           <select id="transportMode">
@@ -119,44 +136,46 @@
           <label for="transportCost">Cost</label>
           <input id="transportCost" type="number" min="0" step="1" placeholder="0" />
         </div>
-        <button id="addTransportLeg" class="tm-button" type="button">
-          + Add transportation
-        </button>
       </div>
+      <button id="addTransportLeg" class="tm-button" type="button">
+        + Add transportation
+      </button>
 
-      <div id="transportList" style="display: flex; flex-direction: column; gap: 10px; margin-top: 16px;">
+      <div class="tf-transport-list" style="margin-top: 20px;">
         ${
           legs.length === 0
             ? `<p class="empty-state">No transportation added yet.</p>`
             : legs
                 .map(
                   (leg, i) => `
-              <div class="tm-event-card" style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px;">
-                <div>
-                  <h3>${modeIcon(leg.mode)} ${modeLabel(leg.mode)}${
+              <div class="tm-event-card tf-transport-card">
+                <div class="tf-transport-icon-badge">${modeIcon(leg.mode)}</div>
+                <div class="tf-transport-details">
+                  <h3>${modeLabel(leg.mode)}${
                     leg.carrier ? " • " + escapeHtml(leg.carrier) : ""
                   }</h3>
-                  <p>
-                    ${escapeHtml(leg.from || "?")} → ${escapeHtml(leg.to || "?")}
-                    ${leg.date ? "<br>" + formatDateTime(leg.date, leg.time) : ""}
-                    ${
-                      leg.confirmation
-                        ? "<br>Confirmation: " + escapeHtml(leg.confirmation)
-                        : ""
-                    }
-                    ${
-                      leg.cost
-                        ? "<br>Cost: " + Number(leg.cost).toLocaleString()
-                        : ""
-                    }
+                  <p class="tf-transport-route">
+                    ${escapeHtml(leg.from || "?")}
+                    <span class="tf-transport-arrow">→</span>
+                    ${escapeHtml(leg.to || "?")}
                   </p>
+                  ${leg.date ? `<p class="place-meta">${formatDateTime(leg.date, leg.time)}</p>` : ""}
+                  ${
+                    leg.confirmation
+                      ? `<p class="place-meta">Confirmation: ${escapeHtml(leg.confirmation)}</p>`
+                      : ""
+                  }
+                  ${
+                    leg.cost
+                      ? `<p class="place-meta">Cost: ${Number(leg.cost).toLocaleString()}</p>`
+                      : ""
+                  }
                 </div>
                 <button
-                  class="tm-filter-pill"
+                  class="tm-filter-pill tf-transport-remove"
                   data-remove-index="${i}"
                   type="button"
                   aria-label="Remove"
-                  style="flex-shrink:0;"
                 >✕</button>
               </div>
             `
@@ -164,12 +183,6 @@
                 .join("")
         }
       </div>
-
-      ${
-        legs.length > 0
-          ? `<p class="tm-overview-value" style="margin-top:12px;">Total transportation cost: ${totalCost.toLocaleString()}</p>`
-          : ""
-      }
     `;
 
     document
@@ -179,22 +192,12 @@
     container.querySelectorAll("[data-remove-index]").forEach((btn) => {
       btn.addEventListener("click", () => {
         const idx = Number(btn.getAttribute("data-remove-index"));
-        const current = loadLegs().sort((a, b) => {
-          const da = new Date(`${a.date || "9999-12-31"}T${a.time || "00:00"}`);
-          const db = new Date(`${b.date || "9999-12-31"}T${b.time || "00:00"}`);
-          return da - db;
-        });
+        const current = sortedLegs();
         current.splice(idx, 1);
         saveLegs(current);
         render();
       });
     });
-  }
-
-  function escapeHtml(str) {
-    const div = document.createElement("div");
-    div.textContent = str;
-    return div.innerHTML;
   }
 
   function handleAdd() {

@@ -46,17 +46,18 @@
         </div>
 
         <div class="tm-step-panel" data-step-panel="1">
-          <div style="display: flex; align-items: center; margin-bottom: 14px">
+          <div class="tf-step-heading">
             <span class="tm-step-number">1</span>
-            <strong style="font-size: 1.05rem">Choose your trip</strong>
+            <strong>Choose your trip</strong>
           </div>
           <div id="trip-form" class="tm-form">
             <div class="tm-form-row">
               <label for="destination">Destination</label>
               <input
                 id="destination"
-                placeholder="Destination"
+                placeholder="Try Lisbon, Kyoto, Mexico City…"
                 list="destSuggestions"
+                autocomplete="off"
               />
               <datalist id="destSuggestions"></datalist>
             </div>
@@ -93,9 +94,9 @@
         </div>
 
         <div class="tm-step-panel" data-step-panel="2" hidden>
-          <div style="display: flex; align-items: center; margin-bottom: 14px">
+          <div class="tf-step-heading">
             <span class="tm-step-number">2</span>
-            <strong style="font-size: 1.05rem">Shape the plan</strong>
+            <strong>Shape the plan</strong>
           </div>
           <div id="tripOverview" class="tm-overview-card"></div>
           <div id="tripHighlights" class="tm-highlights-card"></div>
@@ -107,9 +108,9 @@
         </div>
 
         <div class="tm-step-panel" data-step-panel="3" hidden>
-          <div style="display: flex; align-items: center; margin-bottom: 14px">
+          <div class="tf-step-heading">
             <span class="tm-step-number">3</span>
-            <strong style="font-size: 1.05rem">Explore the destination</strong>
+            <strong>Explore the destination</strong>
           </div>
           <div class="tm-journey-card">
             <h3>Build your itinerary</h3>
@@ -117,8 +118,6 @@
               Once your trip basics are in place, you can carry them into a
               day-by-day plan.
             </p>
-
-            <!-- ⭐ FIXED BUTTON (now brown) -->
             <a class="tm-page-btn" href="itinerary.html">Open itinerary builder</a>
           </div>
         </div>
@@ -126,7 +125,7 @@
     </main>
 
     <div class="tm-page-actions">
-      <a class="tm-page-btn" href="index.html">← Back</a>
+      <a class="tm-page-btn tm-page-btn-ghost" href="index.html">← Back</a>
       <a class="tm-page-btn" href="planner.html" onclick="localStorage.clear()"
         >+ New Trip</a
       >
@@ -134,9 +133,10 @@
 
     <footer class="tm-footer">TravelFlow • Smart plans, smoother trips</footer>
 
+    <script src="api/icons.js"></script>
     <script src="api/weather.js"></script>
     <script src="api/currency.js"></script>
     <script src="api/geocode.js"></script>
-    <script src="app.js"></script>
+    <script src="api/app.js"></script>
   </body>
 </html>

@@ -12,6 +12,9 @@
         <h1 class="tm-logo">TravelFlow</h1>
         <nav class="tm-nav" aria-label="Primary navigation">
           <a class="tm-nav-link" href="index.html">Home</a>
+          <button class="tm-nav-link tf-export-btn" type="button" id="exportInsights" data-export-trigger>
+            Share trip
+          </button>
         </nav>
       </div>
     </header>
@@ -21,10 +24,11 @@
         <div class="tm-form" style="grid-template-columns: 1fr auto">
           <div class="tm-form-row">
             <label for="destination">Destination</label>
-            <input id="destination" placeholder="Enter a destination..." />
+            <input id="destination" placeholder="Enter a destination..." list="destSuggestions" autocomplete="off" />
+            <datalist id="destSuggestions"></datalist>
           </div>
-          <div class="tm-form-row" style="justify-content: flex-end">
-            <button id="refreshInsights" class="tm-button" style="grid-column: auto; margin-top: 22px">
+          <div class="tm-form-row tf-refresh-row">
+            <button id="refreshInsights" class="tm-button">
               Refresh
             </button>
           </div>
@@ -45,7 +49,6 @@
           <section id="weather" class="tm-insight-card"></section>
           <section id="packing" class="tm-insight-card"></section>
           <section id="budget" class="tm-insight-card"></section>
-          <section id="transportation" class="tm-insight-card"></section>
         </div>
       </section>
 
@@ -82,15 +85,17 @@
     </main>
 
     <div class="tm-page-actions">
-      <a class="tm-page-btn" href="planner.html">← Back</a>
+      <a class="tm-page-btn tm-page-btn-ghost" href="planner.html">← Back</a>
       <a class="tm-page-btn" href="planner.html" onclick="localStorage.clear()">+ New Trip</a>
     </div>
 
     <footer class="tm-footer">TravelFlow • Smart plans, smoother trips</footer>
 
+    <script src="api/icons.js"></script>
     <script src="api/weather.js"></script>
     <script src="api/currency.js"></script>
     <script src="api/geocode.js"></script>
-    <script src="app.js"></script>
+    <script src="api/export.js"></script>
+    <script src="api/app.js"></script>
   </body>
 </html>
